@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Carros = ({ carros, onAddCarro }) => {
     const [novoCarro, setNovoCarro] = useState({ modelo: '', marca: '', ano: '', disponivel: false });
+    const [erro, setErro] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -13,6 +14,14 @@ const Carros = ({ carros, onAddCarro }) => {
     };
 
     const handleAddCarro = () => {
+        // Validação do ano
+        if (!novoCarro.ano || parseInt(novoCarro.ano) <= 1883) {
+            setErro('O ano deve ser maior que 1884.');
+            return;
+        }
+
+        // Limpa o erro se os dados forem válidos
+        setErro('');
         onAddCarro(novoCarro);
         setNovoCarro({ modelo: '', marca: '', ano: '', disponivel: false });
     };
@@ -21,6 +30,7 @@ const Carros = ({ carros, onAddCarro }) => {
         <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
             {/* Formulário para adicionar carro */}
             <h3 className="text-xl font-bold mb-4">Adicionar Novo Carro</h3>
+            {erro && <p className="text-red-500 mb-4">{erro}</p>}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <input
                     type="text"

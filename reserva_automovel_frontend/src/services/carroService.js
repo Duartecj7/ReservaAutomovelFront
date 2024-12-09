@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8080/carros'; // URL do seu backend
+const apiUrl = 'http://localhost:8080/carros'; 
 
 // Função para listar todos os carros
 export const listarCarros = async () => {

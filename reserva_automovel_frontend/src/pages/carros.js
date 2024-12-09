@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { listarCarros, adicionarCarro } from '../services/carroService';
 import Carros from '../components/Carros';
 import "@/app/globals.css";
+import Navbar from '@/components/NavBar';
 
 export default function CarrosPage() {
     const [carros, setCarros] = useState([]);
@@ -31,13 +32,14 @@ export default function CarrosPage() {
             console.error("Erro ao adicionar carro", error);
         }
     };
-
+4
     if (loading) {
         return <p>A carregar os carros...</p>;
     }
 
     return (
         <div  >
+            <Navbar/>
             <Carros carros={carros} onAddCarro={handleAddCarro} />
         </div>
     );
