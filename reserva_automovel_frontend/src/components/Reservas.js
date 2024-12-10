@@ -174,16 +174,16 @@ const Reserva = () => {
                 {reservas.length === 0 ? (
                     <p>Nenhuma reserva encontrada.</p>
                 ) : (
-                    <ul>
+                    <div className="max-h-80 overflow-y-auto border p-2 bg-white rounded-lg shadow-md">
                         {reservas.map((reserva, index) => (
-                            <li key={index} className="p-4 bg-white rounded-lg shadow-md mb-4">
+                            <div key={index} className="p-2 border-b last:border-none">
                                 <p><strong>Cliente:</strong> {reserva.cliente.nome}</p>
                                 <p><strong>Carro:</strong> {reserva.carro.modelo} ({reserva.carro.marca})</p>
                                 <p><strong>Data de Início:</strong> {new Date(reserva.dataInicio).toLocaleDateString()}</p>
                                 <p><strong>Data de Fim:</strong> {new Date(reserva.dataFim).toLocaleDateString()}</p>
-                            </li>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 )}
             </div>
         </div>

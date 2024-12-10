@@ -19,7 +19,7 @@ const Clientes = ({ clientes, onAddCliente }) => {
 
   const validarDados = () => {
     const novosErros = {};
-    console.log("Validar dados:", novoCliente); // Debug
+    //console.log("Validar dados:", novoCliente); // Debug
   
     if (!novoCliente.nome || !/^[a-zA-ZÀ-ÿ\s]+$/.test(novoCliente.nome)) {
       novosErros.nome = "O nome deve conter apenas letras.";
@@ -34,15 +34,15 @@ const Clientes = ({ clientes, onAddCliente }) => {
     }
   
     setErros(novosErros);
-    console.log("Erros de validação:", novosErros); // Debug
+    //console.log("Erros de validação:", novosErros); // Debug
     return Object.keys(novosErros).length === 0;
   };
   
 
   const handleAddCliente = () => {
-    console.log("chamar handleAddCliente..."); // Debug
+    //console.log("chamar handleAddCliente..."); // Debug
     if (validarDados()) {
-      console.log("Dados válidos, a chamar onAddCliente..."); // Debug
+      //console.log("Dados válidos, a chamar onAddCliente..."); // Debug
       onAddCliente(novoCliente);
       setNovoCliente({ nome: "", email: "", telefone: "" });
     }
@@ -106,25 +106,28 @@ const Clientes = ({ clientes, onAddCliente }) => {
       </button>
 
       {/* Lista de clientes */}
-      <h2 className="text-2xl font-bold mt-8">Lista de Clientes</h2>
-      {clientes.length === 0 ? (
-        <p className="mt-4 text-gray-600">Nenhum cliente disponível no momento.</p>
-      ) : (
-        <ul className="mt-4 space-y-4">
-          {clientes.map((cliente, index) => (
-            <li
-              key={cliente.id || index}
-              className="p-4 bg-white rounded-lg shadow-md flex flex-col md:flex-row md:justify-between items-start md:items-center"
-            >
-              <div>
-                <p className="text-lg font-semibold">{cliente.nome}</p>
-                <p className="text-sm text-gray-700">Email: {cliente.email}</p>
-                <p className="text-sm text-gray-700">Telefone: {cliente.telefone}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="mt-8">
+  <h2 className="text-2xl font-bold mt-8">Lista de Clientes</h2>
+  {clientes.length === 0 ? (
+    <p className="mt-4 text-gray-600">Nenhum cliente disponível no momento.</p>
+  ) : (
+    <div className="mt-4 max-h-[400px] overflow-y-auto border p-2 bg-white rounded-lg shadow-md space-y-2">
+      {clientes.map((cliente, index) => (
+        <div
+          key={cliente.id || index}
+          className="p-4 bg-white rounded-lg shadow-md flex flex-col md:flex-row md:justify-between items-start md:items-center"
+        >
+          <div>
+            <p className="text-lg font-semibold">{cliente.nome}</p>
+            <p className="text-sm text-gray-700">Email: {cliente.email}</p>
+            <p className="text-sm text-gray-700">Telefone: {cliente.telefone}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
     </div>
   );
 };

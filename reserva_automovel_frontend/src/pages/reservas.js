@@ -39,7 +39,6 @@ export default function ReservaPage() {
     <div className="p-6 bg-gray-50 min-h-screen">
       <NavBar/>
       <div className="ml-11">
-      <h1 className="text-2xl font-bold mb-6">Página de Reservas</h1>
       <Reservas clientes={clientes} carros={carros} />
       </div>
     </div>

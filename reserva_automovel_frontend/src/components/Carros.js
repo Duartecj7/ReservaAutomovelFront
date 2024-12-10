@@ -27,7 +27,7 @@ const Carros = ({ carros, onAddCarro }) => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div className="max-w-4xl max-h-screen mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
             {/* Formulário para adicionar carro */}
             <h3 className="text-xl font-bold mb-4">Adicionar Novo Carro</h3>
             {erro && <p className="text-red-500 mb-4">{erro}</p>}
@@ -77,35 +77,39 @@ const Carros = ({ carros, onAddCarro }) => {
             </button>
 
             {/* Lista de carros */}
-            <h2 className="text-2xl font-bold mt-8">Lista de Carros</h2>
-            {carros.length === 0 ? (
+            <div className="mt-8 max-h-screen">
+                <h2 className="text-2xl font-bold mt-8">Lista de Carros</h2>
+                {carros.length === 0 ? (
                 <p className="mt-4 text-gray-600">Nenhum carro disponível no momento.</p>
-            ) : (
-                <ul className="mt-4 space-y-4">
-                    {carros.map((carro, index) => (
-                        <li
-                            key={carro.id || index}
-                            className="p-4 bg-white rounded-lg shadow-md flex flex-col md:flex-row md:justify-between items-start md:items-center"
-                        >
-                            <div>
-                                <p className="text-lg font-semibold">
-                                    {carro.modelo} <span className="text-gray-500">({carro.marca}, {carro.ano})</span>
-                                </p>
-                                <p className="text-sm text-gray-700">
-                                    Status:{' '}
-                                    <span
-                                        className={`${
-                                            carro.disponivel ? 'text-green-500' : 'text-red-500'
-                                        } font-medium`}
-                                    >
-                                        {carro.disponivel ? 'Disponível' : 'Indisponível'}
-                                    </span>
-                                </p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            )}
+                ) : (
+            <div className="mt-4 max-h-80 overflow-y-auto border p-2 bg-white rounded-lg shadow-md space-y-2">
+                {carros.map((carro, index) => (
+            <div
+            key={carro.id || index}
+            className="p-4 bg-white rounded-lg shadow-md flex flex-col md:flex-row md:justify-between items-start md:items-center"
+            >
+            <div>
+                <p className="text-lg font-semibold">
+                {carro.modelo} <span className="text-gray-500">({carro.marca}, {carro.ano})</span>
+                </p>
+                <p className="text-sm text-gray-700">
+                Status:{' '}
+                <span
+                    className={`${
+                    carro.disponivel ? 'text-green-500' : 'text-red-500'
+                    } font-medium`}
+                >
+                    {carro.disponivel ? 'Disponível' : 'Indisponível'}
+                </span>
+                </p>
+            </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+
         </div>
     );
 };

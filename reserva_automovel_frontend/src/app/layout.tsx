@@ -1,6 +1,16 @@
 // app/layout.tsx
-import RootLayout from "../app/layout/RootLayout";
-
+import Navbar from "../components/NavBar";
+import "../app/globals.css";
+import React from "react";
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <RootLayout>{children}</RootLayout>;
+  return (
+    <html lang="en">
+      <body>
+        {/* Navbar visível em todas as páginas */}
+        <Navbar />
+        {/* Conteúdo principal da aplicação */}
+        <main>{children}</main>
+      </body>
+    </html>
+  );
 }

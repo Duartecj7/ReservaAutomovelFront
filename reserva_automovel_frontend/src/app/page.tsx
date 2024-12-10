@@ -1,6 +1,5 @@
-// "use client" vai tornar este componente do lado do cliente
 "use client";
-
+import React from "react";
 import Carros from "../pages/carros";
 import Clientes from "../pages/clientes";
 import Reservas from "../pages/reservas";
