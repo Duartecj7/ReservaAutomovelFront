@@ -27,7 +27,7 @@ const Carros = ({ carros, onAddCarro }) => {
     };
 
     return (
-        <div className="max-w-4xl max-h-screen mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
             {/* Formulário para adicionar carro */}
             <h3 className="text-xl font-bold mb-4">Adicionar Novo Carro</h3>
             {erro && <p className="text-red-500 mb-4">{erro}</p>}
