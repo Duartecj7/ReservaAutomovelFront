@@ -1,6 +1,6 @@
 // layout/RootLayout.tsx
-import Navbar from "@/components/NavBar";
-import "@/app/globals.css";
+import Navbar from "../../components/NavBar";
+import "../../app/globals.css";
 
 export default function RootLayout({
   children,

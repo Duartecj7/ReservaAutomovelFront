@@ -1,10 +1,10 @@
 "use client";
-
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { listarClientes, adicionarCliente } from '../services/clienteService';
 import Clientes from '../components/Clientes';
-import "@/app/globals.css";
-import Navbar from '@/components/NavBar';
+import "../app/globals.css";
+import NavBar from '../components/NavBar';
 
 
 export default function ClientesPage() {
@@ -17,7 +17,7 @@ export default function ClientesPage() {
         const clientesData = await listarClientes();
         setClientes(clientesData);
       } catch (error) {
-        console.error("Erro ao buscar clientes", error);
+        console.error("Erro ao procurar clientes", error);
       } finally {
         setLoading(false);
       }
@@ -40,7 +40,7 @@ export default function ClientesPage() {
 
   return (
     <div>
-<Navbar/>
+      <NavBar/>
       <Clientes clientes={clientes} onAddCliente={handleAddCliente} />
     </div>
   );

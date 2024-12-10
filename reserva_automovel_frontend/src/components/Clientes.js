@@ -13,45 +13,41 @@ const Clientes = ({ clientes, onAddCliente }) => {
     const { name, value } = e.target;
     setNovoCliente({ ...novoCliente, [name]: value });
 
-    // Remove o erro quando o usuário digita novamente
+    // Remove o erro quando o user digita novamente
     setErros((prevErros) => ({ ...prevErros, [name]: '' }));
   };
 
   const validarDados = () => {
     const novosErros = {};
-
-    // Validação do nome: apenas letras e não vazio
+    console.log("Validar dados:", novoCliente); // Debug
+  
     if (!novoCliente.nome || !/^[a-zA-ZÀ-ÿ\s]+$/.test(novoCliente.nome)) {
-      novosErros.nome = 'O nome deve conter apenas letras.';
+      novosErros.nome = "O nome deve conter apenas letras.";
     }
-
-    // Validação do email: formato de email válido
-    if (
-      !novoCliente.email ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(novoCliente.email)
-    ) {
-      novosErros.email = 'O email deve estar em um formato válido.';
+    if (!novoCliente.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(novoCliente.email)) {
+      novosErros.email = "O email deve estar num formato válido.";
     }
-
-    // Validação do telefone: deve conter 9 dígitos ou indicativo + 9 dígitos
     const telefoneRegex = /^(?:\+\d{3}|00\d{3})?\d{9}$/;
-      if (!novoCliente.telefone || !telefoneRegex.test(novoCliente.telefone)) {
-    novosErros.telefone =
-      'O telefone deve conter 9 dígitos ou incluir o indicativo de país (+NNN ou 00NNN) seguido dos 9 dígitos do seu número.';
-  }
-
+    if (!novoCliente.telefone || !telefoneRegex.test(novoCliente.telefone)) {
+      novosErros.telefone =
+        "O telefone deve conter 9 dígitos ou incluir o indicativo de país (+NNN ou 00NNN) seguido dos 9 dígitos do seu número.";
+    }
+  
     setErros(novosErros);
-
-    // Retorna true se não houver erros
+    console.log("Erros de validação:", novosErros); // Debug
     return Object.keys(novosErros).length === 0;
   };
+  
 
   const handleAddCliente = () => {
+    console.log("chamar handleAddCliente..."); // Debug
     if (validarDados()) {
+      console.log("Dados válidos, a chamar onAddCliente..."); // Debug
       onAddCliente(novoCliente);
-      setNovoCliente({ nome: '', email: '', telefone: '' });
+      setNovoCliente({ nome: "", email: "", telefone: "" });
     }
   };
+  
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
